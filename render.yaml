@@ -1,0 +1,42 @@
+# Declarative Render infrastructure (optional)
+# Reference: https://render.com/docs/infrastructure-as-code
+
+services:
+  - type: web
+    name: circle-of-light-api
+    env: docker
+    plan: free
+    autoDeploy: true
+    dockerfilePath: API/Dockerfile
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: TOKEN_ACCESS_NAME
+        value: _access
+      - key: TOKEN_REFRESH_NAME
+        value: _refresh
+      - key: TOKEN_ACCESS_LIFETIME
+        value: "15"
+      - key: TOKEN_REFRESH_LIFETIME
+        value: "10080"
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "False"
+      - key: SQLITE_PATH
+        value: /data/db.sqlite3
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+
+  - type: static_site
+    name: circle-of-light-ui
+    buildCommand: npm install && npm run build
+    publishPath: UI/app/dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        # Replace service URL after first API deploy if needed
+        value: https://circle-of-light-api.onrender.com/api/v1

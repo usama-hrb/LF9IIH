@@ -1,28 +1,26 @@
 services:
-    api:
-        container_name: API
-        build: API
-        image: api:tar
-        env_file:
-            - ./API/app/.env
-        ports:
-            - '8000:8000'
-        volumes:
-            - ./API/app:/app
-        restart:
-            "on-failure"
+  api:
+    container_name: API
+    build: API
+    image: api:tar
+    env_file:
+      - ./API/app/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./API/app:/app
+    restart: "on-failure"
 
-    ui:
-        container_name: UI
-        build: UI
-        image: ui:tar
-        env_file:
-            - ./UI/app/.env
-        ports:
-            - '3000:3000'
-        volumes:
-            - ./UI/app:/app
-        depends_on:
-            - api
-        restart:
-            "on-failure"
+  ui:
+    container_name: UI
+    build: UI
+    image: ui:tar
+    env_file:
+      - ./UI/app/.env
+    ports:
+      - "3000:80"
+    volumes:
+      - ./UI/app:/app
+    depends_on:
+      - api
+    restart: "on-failure"

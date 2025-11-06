@@ -1,8 +1,38 @@
-FROM debian:bookworm
-RUN apt update && apt install -y git vim zsh curl ca-certificates gnupg
-RUN DEBIAN_FRONTEND=noninteractive apt install -y python3 python3-pip python3-venv
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/tarikkudesu/My-configs/refs/heads/main/install.sh)"
+FROM python:3.12-slim AS base
+
+# Environment optimizations
+ENV PYTHONDONTWRITEBYTECODE=1 \
+	PYTHONUNBUFFERED=1 \
+	PIP_NO_CACHE_DIR=on \
+	POETRY_VERSION=none
+
+# System deps needed for cryptography / bcrypt wheels build fallback
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends build-essential libffi-dev libssl-dev curl \
+	&& rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
-# ENTRYPOINT [ "python3", "manage.py", "runserver", "0.0.0.0:8000" ]
-ENTRYPOINT [ "tail", "-f" ]
+
+# Install python deps first (better layer caching)
+COPY app/requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip \
+	&& pip install -r /tmp/requirements.txt
+
+# Copy project (only what we need for runtime)
+COPY app /app
+
+# Expose port
+EXPOSE 8000
+
+# Entry script runs migrations then starts gunicorn
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENV DJANGO_SETTINGS_MODULE=tar.settings \
+	GUNICORN_WORKERS=3 \
+	SQLITE_PATH=/data/db.sqlite3
+
+# Create mount point directory (Render persistent disk will attach here if configured)
+RUN mkdir -p /data && chown -R root:root /data
+
+ENTRYPOINT ["/entrypoint.sh"]

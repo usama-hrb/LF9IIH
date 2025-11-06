@@ -65,7 +65,13 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*"]  # broadened for initial deployment; restrict later
+
+# Render.com specific host injection
+RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    # Ensure Django accepts the external hostname
+    ALLOWED_HOSTS = list({*ALLOWED_HOSTS, RENDER_EXTERNAL_HOSTNAME})
 
 
 # Application definition
@@ -120,6 +126,11 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# Allow overriding sqlite path (for Render persistent disk mount)
+SQLITE_PATH = os.getenv("SQLITE_PATH")
+if SQLITE_PATH:
+    DATABASES["default"]["NAME"] = SQLITE_PATH
 
 
 # Password validation

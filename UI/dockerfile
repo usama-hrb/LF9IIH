@@ -1,10 +1,18 @@
-FROM debian:bookworm
-RUN apt update && apt install -y git vim zsh curl ca-certificates gnupg
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt install -y nodejs
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/tarikkudesu/My-configs/refs/heads/main/install.sh)"
+### Production build + static serving for Vite React app
+### Multi-stage to keep final image tiny
+
+FROM node:20-alpine AS build
 WORKDIR /app
-# RUN npm install
-ENTRYPOINT [ "tail", "-f" ]
-# ENTRYPOINT [ "npm", "run", "dev" ]
+COPY app/package*.json ./
+COPY app/.npmrc* ./ 2>/dev/null || true
+RUN npm install --no-audit --no-fund
+COPY app .
+RUN npm run build
+
+FROM nginx:1.27-alpine
+WORKDIR /usr/share/nginx/html
+COPY --from=build /app/dist .
+EXPOSE 80
+# Simple healthcheck (optional)
+HEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://localhost/ || exit 1
+CMD ["nginx", "-g", "daemon off;"]
