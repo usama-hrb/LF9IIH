@@ -1,0 +1,39 @@
+### GET ALL PAYMENTS
+
+GET http://localhost:8000/api/v1/payments/all?month=9&year=2023 HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIxODg3NDUsImNvZGUiOiIzODczNTYifQ.QXa5p6PMcIl5AO4y62rkQEA0H4twmaIykaf_-wcXfts; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIyNTM1NDUsImNvZGUiOiIzODczNTYifQ.9JJOGt6V3dpSt1BMoTxMV_bBzF7zCD4eHL03r-mz7b4; HttpOnly; Path=/api/auth/refresh/
+
+
+[
+  {
+    "student_name": "student4 student4",
+    "amount": 201.0
+  },
+  {
+    "student_name": "student1 student1",
+    "amount": 0.0
+  },
+]
+
+### CREATE AND UPDATE PAYMENT
+POST http://localhost:8000/api/v1/payments/676767/create HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/
+
+{
+    "month": "11",
+    "year": "2025",
+    "amount": 1.0
+}
+
+### GET STUDENT PAYMENT RECORD
+GET http://localhost:8000/api/v1/payments/676767/all HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIxODg3NDUsImNvZGUiOiIzODczNTYifQ.QXa5p6PMcIl5AO4y62rkQEA0H4twmaIykaf_-wcXfts; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIyNTM1NDUsImNvZGUiOiIzODczNTYifQ.9JJOGt6V3dpSt1BMoTxMV_bBzF7zCD4eHL03r-mz7b4; HttpOnly; Path=/api/auth/refresh/
+
+
+### GET TOTAL PAYMENTS
+GET http://localhost:8000/api/v1/payments/total HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIxODg3NDUsImNvZGUiOiIzODczNTYifQ.QXa5p6PMcIl5AO4y62rkQEA0H4twmaIykaf_-wcXfts; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIyNTM1NDUsImNvZGUiOiIzODczNTYifQ.9JJOGt6V3dpSt1BMoTxMV_bBzF7zCD4eHL03r-mz7b4; HttpOnly; Path=/api/auth/refresh/

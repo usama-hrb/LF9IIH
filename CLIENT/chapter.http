@@ -1,0 +1,57 @@
+### LOGIN
+POST http://localhost:8000/api/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"code": "387356"
+}
+
+### CREATE STUDENT
+POST http://localhost:8000/api/v1/student/create HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/
+
+{
+	"first_name": "Elijah",
+	"last_name": "Mikelson",
+	"phone_number": "0000000000",
+	"parent": "sdi lhachmi",
+	"memorization_method": "chapter",
+	"gender": "M",
+	"age": 23
+}
+
+
+### CREATE CHAPTER COMPLETION
+# api/v1/chapters/:student(int)/create
+POST http://localhost:8000/api/v1/chapters/676767/create HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/	
+
+{
+	"chapter": "5"
+}
+### DELETE CHAPTER COMPLETION
+# api/v1/chapters/:student(int)/delete/:pk(int)
+DELETE http://localhost:8000/api/v1/chapters/676767/delete/1 HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/
+
+### UPDATE CHAPTER COMPLETION
+# api/v1/chapters/:student(int)/update/:pk(int)
+PATCH http://localhost:8000/api/v1/chapters/676767/update/2 HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/
+
+{
+	"evaluation": "Good progresssssss",
+	"progress": "Completed half of the chapter",
+	"feedback": "Keep up the good work",
+	"completion_date": "2024-06-15"
+}
+
+### LIST CHAPTER COMPLETIONS
+# api/v1/chapters/:student(int)/completions
+GET http://localhost:8000/api/v1/chapters/676767/completions HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/

@@ -1,0 +1,27 @@
+
+### SIGNUP
+POST http://localhost:8000/api/v1/signup HTTP/1.1
+Content-Type: application/json
+
+{
+	"first_name": "test2",
+	"last_name": "test3",
+	"phone_number": "0987654321",
+	"email": "something@gmail.com",
+	"password": "#78sfsfASff"
+}
+
+
+### LOGIN
+POST http://localhost:8000/api/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"code": "387356"
+}
+
+### GET ME
+GET http://localhost:8000/api/v1/me HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIwMjI5NTQsImNvZGUiOiIyNjg2ODQifQ.kXIhEe6CxrnwhQXoOZM_dtkj0LZxpBOT1TFdZSECrdQ
+

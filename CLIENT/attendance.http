@@ -1,0 +1,16 @@
+
+### REGISTER ATTENDANCE
+POST http://localhost:8000/api/v1/attendance/350922/create HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIwMjU4ODAsImNvZGUiOiIyNjg2ODQifQ.zIcqbC8P9asuWPdmhlfg8lt8NCyPoJJPNz_igMmzvD4
+
+{
+	"attendance_date": "2023-06-20",
+	"state": "present"
+}
+
+### GET ATTENDANCE RECORD
+GET http://localhost:8000/api/v1/attendance/350922/record?year=2023&month=06 HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIwMjU4ODAsImNvZGUiOiIyNjg2ODQifQ.zIcqbC8P9asuWPdmhlfg8lt8NCyPoJJPNz_igMmzvD4
+

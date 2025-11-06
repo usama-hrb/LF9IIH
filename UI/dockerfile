@@ -1,0 +1,10 @@
+FROM debian:bookworm
+RUN apt update && apt install -y git vim zsh curl ca-certificates gnupg
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt install -y nodejs
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/tarikkudesu/My-configs/refs/heads/main/install.sh)"
+WORKDIR /app
+# RUN npm install
+ENTRYPOINT [ "tail", "-f" ]
+# ENTRYPOINT [ "npm", "run", "dev" ]

@@ -1,0 +1,37 @@
+
+### CREATE STUDENT
+POST http://localhost:8000/api/v1/student/create HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIxOTA5OTIsImNvZGUiOiIzODczNTYifQ.wvLFx6cWfIgOgEHWEjmgqzVxHeySN3AANYkRxJy5aRU; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIyNTU3OTIsImNvZGUiOiIzODczNTYifQ.-pPdVnuQhc5Y82BnlWU_QEqDZ3NoRR6nkoZIQ5VSo14; HttpOnly; Path=/api/auth/refresh/
+
+{
+	"first_name": "student18",
+	"last_name": "student18",
+	"phone_number": "0000000008",
+	"parent": "sdi lhachmi",
+	"memorization_method": "chapter",
+	"gender": "M",
+	"age": 23
+}
+
+### UPDATE STUDENT
+PATCH  http://localhost:8000/api/v1/student/292471/update HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIxOTA5OTIsImNvZGUiOiIzODczNTYifQ.wvLFx6cWfIgOgEHWEjmgqzVxHeySN3AANYkRxJy5aRU; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIyNTU3OTIsImNvZGUiOiIzODczNTYifQ.-pPdVnuQhc5Y82BnlWU_QEqDZ3NoRR6nkoZIQ5VSo14; HttpOnly; Path=/api/auth/refresh/
+
+
+{
+	"first_name": "student4_updated",
+	"last_name": "student4_updated",
+	"parent": "updated parent name"
+}
+
+### DELETE STUDENT
+DELETE http://localhost:8000/api/v1/student/977406/delete HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIwMjI5NTQsImNvZGUiOiIyNjg2ODQifQ.kXIhEe6CxrnwhQXoOZM_dtkj0LZxpBOT1TFdZSECrdQ
+
+### STUDENT DETAIL
+GET http://localhost:8000/api/v1/student/676767/detail HTTP/1.1
+Content-Type: application/json
+Cookie: _access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjIzNjEyOTksImNvZGUiOiIzODczNTYifQ._DJT2FQSe8a1_2zECgG-vewh1vg6zNxg9C8oYwvrY6Q; HttpOnly; Path=/ _refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI0MjYwOTksImNvZGUiOiIzODczNTYifQ.HWgB4DZguQ67U6jLW-ZzmE1lEVP4makyKpsTcVHXALE; HttpOnly; Path=/api/auth/refresh/
